@@ -294,6 +294,22 @@ public class NhanVienForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+            dsnv.clear();
+        try {
+            File file = new File("nhanvien.dat");
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String[] data = sc.nextLine().split("\\-");
+                NhanVien nhavie = new NhanVien();
+                nhavie.setMsv(data[0]);
+                nhavie.setHoten(data[1]);
+                nhavie.setSdt(Long.valueOf(data[2]));
+                nhavie.setHsl(Integer.parseInt(data[3]));
+                nhavie.setLuong(Integer.parseInt(data[4]));
+                dsnv.add(nhavie);
+            }
+        } catch (FileNotFoundException ex) {
+        }
         NhanVien nhv = new NhanVien();
         nhv.setMsv(txtMnv.getText());
         nhv.setHoten(txtHoten.getText());
